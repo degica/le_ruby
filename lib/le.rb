@@ -21,6 +21,9 @@ module Le
     elsif defined?(ActiveSupport::Logger)
       logger = ActiveSupport::Logger.new(host)
       logger.formatter = host.formatter if host.respond_to?(:formatter)
+    elsif defined?(ActiveSupport::BufferedLogger)
+      logger = ActiveSupport::BufferedLogger.new(host)
+      logger.formatter = host.formatter if host.respond_to?(:formatter)
     else
       logger = Logger.new(host)
       logger.formatter = host.formatter if host.respond_to?(:formatter)
