@@ -132,7 +132,7 @@ module Le
           @logger_console.add(Logger::Severity::UNKNOWN, message)
         end
 
-        if message.scan(/\n/).empty?
+        if (message =~ /\n/) != nil
           @queue << "#{ @token } #{ message } \n"
         else
           @queue << "#{ message.gsub(/^/, "#{ @token } [#{ random_message_id }]") }\n"
